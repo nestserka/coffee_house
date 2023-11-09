@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/inter?styles=29141');
+
 * {
     box-sizing: border-box;
 }
@@ -128,10 +130,9 @@ body {
 }
 
 .header-banner__block h1 span{
-    font-family: inter-semibold;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size:72px;
-    font-style:italic;
     color:rgba(176, 144, 122, 1);
 }
 
@@ -194,10 +195,9 @@ h2{
 }
 
 h2 span{
-    font-family: inter-semibold;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size:60px;
-    font-style:italic;
     color:#B0907A;
 }
 
@@ -228,14 +228,17 @@ h3, .slider-item__price{
 }
 
 .slider-item__description{
+    text-align: center;
+    padding:16px 0;
+}
+
+.small_description{
     font-family: inter-regular;
     font-weight: 400;
     font-size:16px;
     line-height: 150%;
-    padding:16px 0;
     margin:0;
     color:#403F3D;
-    text-align: center;
 }
 
 .slider-container{
@@ -344,4 +347,84 @@ section{
     position:relative;
     overflow:hidden;
     border-radius:20px;
+}
+
+
+/* mobile section */
+
+.mobile-app{
+    display:flex;
+    flex-direction: row;
+    gap:100px;
+}
+
+.mobile-app__download{
+    width:630px;
+    padding: 144px 0;
+    display:flex;
+    flex-direction: column;
+    gap:40px;
+}
+
+.mobile-app__download h2{
+    text-align: start;
+}
+
+.mobile-btn{
+    display:flex;
+    flex-direction: row;
+    gap:20px;
+}
+
+.mobile-btn__apple, .mobile-btn__android{
+    background-color: rgba(225, 212, 201, 1);
+    padding:11px 20px;
+    width:200px;
+    border-radius: 100px;
+    border:1px solid rgba(102, 95, 85, 1);
+    cursor:pointer;
+    transition: transform 330ms ease-in-out;
+    overflow: hidden;
+    display:flex;
+    flex-direction:row;
+    gap:8px;
+    justify-content: start;
+    align-items: center;
+}
+
+.mobile-btn__wrapper{
+    display:flex;
+    flex-direction: column;
+    text-align: start;
+    gap:2px;
+}
+
+.mobile-btn__wrapper_sub-title{
+    margin:0;
+    padding:0;
+    font-family: inter-semibold;
+    font-size:10px;
+    font-weight:600;
+    line-height:140%;
+    color:rgba(64, 63, 61, 1);
+    text-decoration: none;
+}
+
+.mobile-image img{
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+}
+
+.mobile-btn__apple:hover, .mobile-btn__android:hover,
+.mobile-btn__apple:hover span,
+.mobile-btn__android:hover span {
+    background-color:rgba(102, 95, 85, 1);
+    cursor: pointer;
+    color: rgba(225, 212, 201, 1);
+}
+
+.mobile-btn__apple:hover svg path, .mobile-btn__android:hover svg path{
+    fill: rgba(225, 212, 201, 1);
 }
