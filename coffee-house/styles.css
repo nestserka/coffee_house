@@ -34,8 +34,8 @@ body {
     background-color: #E1D4C9;
 }
 
-.header {
-    padding-bottom: 100px;
+section, .header{
+    margin-bottom: 100px;
 }
 
 .header__menu{
@@ -137,14 +137,18 @@ body {
     color:rgba(176, 144, 122, 1);
 }
 
-.header-banner__block p{
+.coffee-description{
     font-family: inter-regular;
     font-weight: 400;
     font-size:16px;
     line-height: 150%;
-    padding:0;
     margin:0;
+    color:rgba(64, 63, 61, 1);
+}
+
+.header-block{
     color:rgba(225, 212, 201, 1);
+    padding:0;
 }
 
 .header-banner__block__button{
@@ -231,14 +235,6 @@ h3, .slider-item__price{
 .slider-item__description{
     text-align: center;
     padding:16px 0;
-}
-
-.small_description{
-    font-family: inter-regular;
-    font-weight: 400;
-    font-size:16px;
-    line-height: 150%;
-    margin:0;
     color:#403F3D;
 }
 
@@ -298,10 +294,6 @@ h3, .slider-item__price{
 
 .favourite-pagination input[type="radio"]:checked+label {
     background-color: #665F55;
-}
-
-section{
-    margin-bottom: 100px;
 }
 
 .about__paragraph{
