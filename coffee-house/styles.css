@@ -1,5 +1,6 @@
 @import url('https://fonts.cdnfonts.com/css/inter?styles=29141');
 
+
 * {
     box-sizing: border-box;
 }
@@ -188,7 +189,7 @@ h2{
     font-weight: 600;
     font-size:60px;
     line-height: 125%;
-    color:#403F3D;
+    color:rgba(64, 63, 61, 1);
     margin:0;
     padding:0;
     text-align: center;
@@ -213,7 +214,7 @@ h2 span{
     display:flex;
     justify-content: center;
     align-items:center;
-    transition: all 0.5s ease 0s;
+    transition: background-color 1300ms linear;
 }
 
 h3, .slider-item__price{
@@ -265,9 +266,10 @@ h3, .slider-item__price{
 .left-arrow:hover, .right-arrow:hover {
     background-color:#665F55;
     cursor: pointer;
+    border:none;
 }
 
-.left-arrow:hover svg path, .right-arrow:hover svg path{
+.left-arrow:hover svg path, .right-arrow:hover svg path {
     stroke: #E1D4C9;
 }
 
@@ -356,17 +358,21 @@ section{
     display:flex;
     flex-direction: row;
     gap:100px;
+    max-height: 630px;
 }
 
 .mobile-app__download{
-    width:630px;
     padding: 144px 0;
+}
+
+.text-banners{
+    width:630px;
     display:flex;
     flex-direction: column;
     gap:40px;
 }
 
-.mobile-app__download h2{
+.mobile-app__download h2, .contacts__bannres h2{
     text-align: start;
 }
 
@@ -383,7 +389,7 @@ section{
     border-radius: 100px;
     border:1px solid rgba(102, 95, 85, 1);
     cursor:pointer;
-    transition: transform 330ms ease-in-out;
+    transition: background-color 1000ms linear;
     overflow: hidden;
     display:flex;
     flex-direction:row;
@@ -417,14 +423,105 @@ section{
     padding:0;
 }
 
-.mobile-btn__apple:hover, .mobile-btn__android:hover,
-.mobile-btn__apple:hover span,
-.mobile-btn__android:hover span {
+.mobile-btn__apple:hover, .mobile-btn__android:hover{
     background-color:rgba(102, 95, 85, 1);
     cursor: pointer;
     color: rgba(225, 212, 201, 1);
+    border:none;
 }
 
 .mobile-btn__apple:hover svg path, .mobile-btn__android:hover svg path{
     fill: rgba(225, 212, 201, 1);
+    transition: all 0.5s ease-out;
 }
+
+.mobile-btn__apple:hover .mobile-btn__wrapper_sub-title,
+.mobile-btn__android:hover .mobile-btn__wrapper_sub-title {
+    color: rgba(225, 212, 201, 1);
+}
+
+/* footer */
+
+footer{
+    padding-bottom: 40px;
+}
+
+.contacts{
+    background-color: rgba(102, 95, 85, 1);
+    padding:100px;
+    margin:0;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: row;
+}
+
+.contact-list{
+    padding:32px 0;
+    display:flex;
+    flex-direction: column;
+    gap:40px;
+}
+
+.contact-list .menu{
+    display:flex;
+    flex-direction: column;
+    align-items: start;
+    gap:16px;
+}
+
+.contact-list h3, .contact-list .link-btn{
+   color:rgba(225, 212, 201, 1);
+   text-align: start;
+}
+
+.contact-list__link, .contact-list__link-disable{
+    display: flex;
+    align-items: center;
+    gap:8px;
+}
+
+.contact-list__link-disable{
+    cursor: default;
+}
+
+.contact-list .menu__item:after{
+    margin-top: 1px;
+    background-color:rgba(225, 212, 201, 1);
+}
+
+.sns_btn {
+    width: 59px;
+    height: 59px;
+    border-radius: 50%;
+    border: 1px solid rgba(193, 182, 173, 1);
+    background-color: rgba(102, 95, 85, 1);
+    cursor: pointer;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    transition: background-color 800ms linear;
+}
+
+.contacts__banners_filter{
+    color:rgba(225, 212, 201, 1);
+    margin:0;
+    padding:0;
+}
+
+.sns-btns__wrapper{
+    display: flex;
+    flex-direction: row;
+    gap:13px;
+}
+
+.sns_btn:hover {
+    background-color:rgba(225, 212, 201, 1);
+    cursor: pointer;
+    border:none;
+}
+
+.sns_btn:hover svg path{
+    stroke: rgba(64, 63, 61, 1);
+}
+
+
