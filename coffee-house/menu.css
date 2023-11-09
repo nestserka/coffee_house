@@ -26,3 +26,68 @@ header, main{
 .header__menu_logo{
     cursor: pointer;
 }
+
+.menu-btn{
+    padding: 7px 14px 7px 8px;
+    border-radius: 100px;
+    border:1px solid rgba(193, 182, 173, 1);
+    cursor:pointer;
+    transition: background-color 1000ms linear;
+    overflow: hidden;
+    display:flex;
+    flex-direction:row;
+    gap:8px;
+    justify-content: start;
+    align-items: center;
+    background-color:rgba(225, 212, 201, 1);
+}
+
+.menu-btn__cicle{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    background-color: rgba(193, 182, 173, 1);
+    display:flex;
+    align-items:center;
+    justify-content: center;
+}
+
+.menu-btn-container{
+    padding:40px 0;
+    display:flex;
+    flex-direction: row;
+    gap:16px;
+}
+
+.main__wrapper{
+    display:flex;
+    align-items:center;
+    flex-direction: column;
+}
+
+.header__menu{
+    max-height: 100px;
+}
+
+.menu-btn-checked{
+    background-color:rgba(102, 95, 85, 1);
+    color:rgba(225, 212, 201, 1);
+    cursor:default;
+    border: 1px solid transparent;
+}
+
+.menu-btn-checked .menu-btn__cicle{
+    background-color:rgba(225, 212, 201, 1);
+}
+
+.menu-btn:hover{
+    background-color:rgba(102, 95, 85, 1);
+    color:rgba(225, 212, 201, 1);
+    border: 1px solid transparent;
+    transition: all 1s ease-out;
+}
+
+.menu-btn:hover .menu-btn__cicle{
+    background-color:rgba(225, 212, 201, 1);
+    transition: all 1s ease-out;
+}
