@@ -178,7 +178,6 @@ section, .header{
     display:none;
 }
 
-
 .header-banner__block__button:hover .btn_cup{
        display: block;
        animation: appear-anim 0.8s;
