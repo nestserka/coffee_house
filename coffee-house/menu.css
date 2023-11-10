@@ -104,6 +104,7 @@ header, main{
      overflow: hidden;
      border: 1px solid rgba(193, 182, 173, 1);
      border-radius: 40px;
+     cursor:pointer;
 }
 
 
@@ -137,6 +138,6 @@ header, main{
     max-height:309px;
 }
 
-.menu-item__card > .menu-item__card_image-wrapper >  img:hover {
+.menu-item__card:hover > .menu-item__card_image-wrapper >  img {
     transform: scale(1.0);
 }
