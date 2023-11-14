@@ -23,6 +23,9 @@ header, main{
     display: inline-block;
 }
 
+.menu-disable{
+    cursor: default;
+}
 .header__menu_logo{
     cursor: pointer;
 }
