@@ -29,7 +29,7 @@ body {
 
 .page__inner {
     margin:0 auto;
-    width: 1440px;
+    max-width: 1440px;
     padding: 0 40px;
     background-color: #E1D4C9;
 }
@@ -39,25 +39,34 @@ section, .header{
 }
 
 .header__menu{
-    display:flex;
-    justify-content: space-between;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     padding:20px 0;
+    align-items: center;
 }
 
 .header__menu_logo{
     margin:0;
     padding:0;
-    max-height: 60px;;
+    max-height: 60px;
+    margin-right:auto;
+}
+
+.nav-list__wrapper{
+    grid-column: span 2;  
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .menu{
     display:flex;
     flex-direction: row;
-    align-items: center;
     list-style:none;
     gap:40px;
     margin:0;
+    margin-left:6px;
     padding:0;
     max-height: 60px;
 }
@@ -73,13 +82,6 @@ section, .header{
     flex-direction: row;
 }
 
-.menu__iteam__coffee_logo{
-    margin-top:12px;
-}
-
-.menu__item__coffee .menu__link {
-    margin-top:15px;
-}
 
 .menu__item:after {
     background-color: rgba(64, 63, 61, 1);
@@ -523,3 +525,72 @@ footer{
 }
 
 
+/* burger */
+
+.burger {
+    display: none;
+    position: relative;
+    z-index: 3;
+    align-items: center;
+    justify-content: center;
+    width: 43px;
+    height: 43px;
+    cursor: pointer;
+    border-radius:50%;
+    border:1px solid rgba(102, 95, 85, 1);
+}
+
+.burger::after,
+.burger::before {
+    content: '';
+    position: absolute;
+    height: 1.5px;
+    width: 16px;
+    background-color: rgba(64, 63, 61, 1);
+    transition: all 0.3s ease 0s;
+}
+
+.burger::before {
+    top: 40%;
+}
+
+.burger::after {
+    bottom: 40%;
+}
+
+@media all and (max-width:910px){
+
+    .burger{
+        display:flex;
+    }
+
+    .nav-list__wrapper {
+        display:none;
+    }
+
+    .header__menu{
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: end;
+    }
+
+    .header__banner{
+        padding:100px 60px;
+    }
+
+    .btn_cup, .header-banner__block__button:hover .btn_cup {
+        display:block;
+        animation:none;
+        transform: translateX(-3px);
+    }
+
+    .header-banner__block__button span{
+        display: inline-block;
+        transform: translateX(-12px);
+    }
+}
+
+/* @media (min-width:768px) {
+    .burger {
+        display: flex
+    }
+} */
