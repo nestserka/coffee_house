@@ -480,6 +480,7 @@ footer{
 
 .contact-list__link-disable{
     cursor: default;
+    margin-top:2px;
 }
 
 .contact-list .menu__item:after{
