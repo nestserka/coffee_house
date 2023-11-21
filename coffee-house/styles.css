@@ -507,15 +507,8 @@ footer{
     bottom: 40%;
 }
 
-@media (mix-width:910px) and (max-width: 1200px){
-    .mobile-app{
-        flex-direction: column;
-    }
 
-
-}
-
-@media all and (max-width:910px){
+@media all and (max-width:1002px){
 
     .burger{
         display:flex;
