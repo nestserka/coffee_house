@@ -187,3 +187,18 @@ header, main{
     }
 
 }
+
+@media (min-width:379px) and (max-width:767px){
+
+.menu-items__slider {
+    display: grid;
+    grid-template-columns:310px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.menu-btn-container {
+    gap: 8px;
+}
+}
