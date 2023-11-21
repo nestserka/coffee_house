@@ -315,11 +315,9 @@ h3, .slider-item__price{
 
 .image_container__first-row > div,
 .image_container__second-row > div {
-    position:relative;
     overflow:hidden;
     border-radius:20px;
 }
-
 
 /* mobile section */
 
@@ -659,4 +657,84 @@ footer{
     .image_container__second-row > div>  img:hover{
         transform: scale(1.0);
     } 
+}
+
+@media (min-width:379px) and (max-width:767px){
+
+    .image_container__first-row,
+    .image_container__second-row{
+        display: grid;
+        grid-template-rows:590px; 
+        max-width: 348px;
+        gap:0;
+    }
+
+    .header-banner__block h1{
+        font-size:42px;
+        line-height: 48.3px;
+    }
+    
+    .header-banner__block h1 span{
+        font-size:42px;
+        line-height: 48.3px;
+    }
+
+    .header__banner{
+        padding:60px 16px;
+        max-height:552px;
+    }
+
+    .header-banner__block{
+        max-width:310px;
+    }
+
+    .page__inner{
+    padding:0 16px;
+    }
+
+    h2, h2 span{
+      font-size:32px;
+      margin:0;
+      padding:0;
+    }
+
+    .left-arrow, .right-arrow{
+        display:none;
+    }
+
+    .slider-item__img{
+        max-width:348px;
+        max-height:348px;
+    }
+
+    .slider-container{
+        width:auto;
+    }
+
+    .image_container__first-row > div > img,
+    .image_container__second-row > div > img{
+        transform: scale(1.2);
+    }
+
+    .mobile-btn{
+        flex-direction:column;
+    }
+
+    .mobile-app{
+        gap:40px;
+    }
+
+    .contacts{
+        padding:60px 16px;
+        gap:38px;
+    }
+
+    .contacts__banners_filter br{
+        display:none;
+    }
+
+    .contact-list {
+        padding:0;
+    }
+
 }
