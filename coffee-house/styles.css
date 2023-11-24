@@ -169,10 +169,6 @@ section, .header{
     flex-direction:row ;
 }
 
-.header-banner__block__button span{
-    display: inline-block;
-    transition: transform 280ms ease-out 50ms; 
-}
 
 
 @keyframes appear-anim  {
@@ -398,6 +394,10 @@ h3, .slider-item__price{
     display: block;
 }
 
+.btn_cup{
+    display:none;
+}
+
 /* footer */
 
 footer{
@@ -508,28 +508,22 @@ footer{
 }
 
 
-@media all and (max-width:1002px){
-
-    .burger{
-        display:flex;
-    }
-
-    .nav-list__wrapper {
-        display:none;
+@media (min-width:768px) and (max-width:1002px){
+    .menu{
+        gap:20px;
     }
 
     .header__menu{
-        grid-template-columns: repeat(2, 1fr);
-        justify-items: end;
+        display: grid;
+        grid-template-columns: 0.7fr 1fr 1fr; 
     }
+}
+
+
+@media (max-width:1002px){
 
     .header__banner{
         padding:100px 60px;
-    }
-
-    .header-banner__block__button span{
-        display: inline-block;
-        transform: translateX(-12px);
     }
 
     .about__image-container{
@@ -593,8 +587,36 @@ footer{
 
 }
 
+@media (max-width:768px){
+    .burger{
+        display:flex;
+    }
 
-@media (hover: hover) and (min-width:910px) {
+    .nav-list__wrapper {
+        display:none;
+    }
+
+    .header__menu{
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: end;
+    }
+
+    .header-banner__block__button span{
+        display: inline-block;
+        transform: translateX(-12px);
+    }
+
+    .btn_cup{
+        display: inline-block;
+        transform: translateX(-4px);
+    }
+}
+
+@media (hover: hover) and (min-width:769px){
+    .header-banner__block__button span{
+        display: inline-block;
+        transition: transform 280ms ease-out 50ms; 
+    }
 
     .header-banner__block__button:hover .btn_cup {
         display:block;
@@ -610,11 +632,8 @@ footer{
     .header-banner__block__button:hover  span{
         transform: translateX(-10px);
     }
-
-    .btn_cup{
-        display:none;
-    }
 }
+
 
 @media (hover: hover) {
    
@@ -744,6 +763,10 @@ footer{
 
     .contact-list {
         padding:0;
+    }
+
+    .favourite-coffee{
+        justify-content: center;
     }
 
 }
