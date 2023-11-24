@@ -673,7 +673,7 @@ footer{
     .image_container__second-row{
         display: grid;
         grid-template-rows:590px; 
-        max-width: 348px;
+        width:100%;
         gap:0;
     }
 
