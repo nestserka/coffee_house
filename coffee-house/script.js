@@ -37,4 +37,5 @@ navLinks.forEach(link => {
   });
 });
 
+
 // carusel
