@@ -118,14 +118,13 @@ slider.addEventListener("mousemove", (e) => {
 
 window.addEventListener("mouseup", (e) => {
   if (cursorX > e.offsetX){
-    console.log(e.offsetX);
     moveToNextSlide();
   } else if (cursorX < e.offsetX){
     moveToPrevSlide();
   }
   isPressed = false;
 });
-console.log(isSwipped)
+
 
 
 sliderItems.addEventListener('mouseover', () => {
@@ -143,7 +142,6 @@ sliderItems.addEventListener('mouseout', () => {
   radioButtons.forEach((radio, index) => {
     if (radio.checked) {
         labels[labelIndexl].classList.remove('paused-animation');
-        mainInterval = window.setInterval(moveToNextSlide, 3500);
     }
   });
 });
