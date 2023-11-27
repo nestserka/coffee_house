@@ -232,6 +232,12 @@ h3, .slider-item__price{
     display:flex;
     align-items:center;
     flex-direction:column;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .favourite-coffee{
@@ -246,6 +252,13 @@ h3, .slider-item__price{
     width:480px;
     height:480px;
     margin-bottom:20px;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none
 }
 
 .favourite-pagination{

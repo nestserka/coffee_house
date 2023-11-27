@@ -88,6 +88,7 @@ let remaining = 5100;
 let timeLeftAfterRem;
 let mainInterval = window.setInterval(moveToNextSlide, 5100);
 
+
 const updateRadioButtons = (index) => {
   radioButtons[Math.abs(index)].checked = true;
   radioButtons.forEach((rb) => {
@@ -98,38 +99,53 @@ const updateRadioButtons = (index) => {
 };
 
 
+const cards = sliderItems;
+let isPressed = false;
+let cursorX;
+let labelIndexl;
+
+
+
+slider.addEventListener("mousedown", (e) => {
+  isPressed = true;
+  cursorX = e.offsetX - cards.offsetLeft;
+});
+
+slider.addEventListener("mousemove", (e) => {
+  if (!isPressed) return;
+  e.preventDefault();
+});
+
+window.addEventListener("mouseup", (e) => {
+  if (cursorX > e.offsetX){
+    console.log(e.offsetX);
+    moveToNextSlide();
+  } else if (cursorX < e.offsetX){
+    moveToPrevSlide();
+  }
+  isPressed = false;
+});
+console.log(isSwipped)
+
+
 sliderItems.addEventListener('mouseover', () => {
   radioButtons.forEach((radio, index) => {
     if (radio.checked) {
       labels[index].classList.add('paused-animation');
+      labelIndexl = index;
     }
   });
   clearInterval(mainInterval); 
-  timeLeftAfterRem = remaining;
 });
 
 
 sliderItems.addEventListener('mouseout', () => {
   radioButtons.forEach((radio, index) => {
     if (radio.checked) {
-      labels[index].classList.remove('paused-animation');
-      mainInterval = window.setInterval(moveToNextSlide,timeLeftAfterRem);
+        labels[labelIndexl].classList.remove('paused-animation');
+        mainInterval = window.setInterval(moveToNextSlide, 3500);
     }
   });
 });
 
 
-
-
-function countIntervals() {
-  const decrementInterval = setInterval(() => {
-    remaining -= 100;
-    if (remaining <= 0) {
-      clearInterval(decrementInterval);
-      remaining = 5100; 
-      countIntervals(); 
-    }
-  }, 100); 
-}
-
-countIntervals(); 
