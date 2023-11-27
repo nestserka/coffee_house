@@ -298,6 +298,10 @@ h3, .slider-item__price{
     animation-iteration-count: 1;
 }
 
+.paused-animation::before {
+    animation-play-state: paused; 
+  }
+
 .about__paragraph{
    text-align: left;
 }

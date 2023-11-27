@@ -74,8 +74,6 @@ const moveToPrevSlide = () => {
 const setPosition = () => {
     sliderItems.style.transform = `translateX(${position * slideWidth}%)`;
     updateRadioButtons(position);
-    window.clearInterval(mainInterval);
-    mainInterval = window.setInterval(moveToNextSlide, 5100);
 };
 
 btnNext.addEventListener('click', moveToNextSlide);
@@ -84,14 +82,54 @@ btnPrev.addEventListener('click', moveToPrevSlide);
 
 
 const radioButtons = document.querySelectorAll('.favourite-pagination input[type="radio"]');
+const labels = document.querySelectorAll('.favourite-pagination label');
+let timeLeft = 5100;
+let remaining = 5100;
+let timeLeftAfterRem;
+let mainInterval = window.setInterval(moveToNextSlide, 5100);
 
 const updateRadioButtons = (index) => {
   radioButtons[Math.abs(index)].checked = true;
   radioButtons.forEach((rb) => {
     rb.disabled = rb.checked;
   });
+  window.clearInterval(mainInterval);
+  mainInterval = window.setInterval(moveToNextSlide, 5100);
 };
 
-let mainInterval = setInterval(function(){moveToNextSlide();}, 5100);
-window.onload = mainInterval;
 
+sliderItems.addEventListener('mouseover', () => {
+  radioButtons.forEach((radio, index) => {
+    if (radio.checked) {
+      labels[index].classList.add('paused-animation');
+    }
+  });
+  clearInterval(mainInterval); 
+  timeLeftAfterRem = remaining;
+});
+
+
+sliderItems.addEventListener('mouseout', () => {
+  radioButtons.forEach((radio, index) => {
+    if (radio.checked) {
+      labels[index].classList.remove('paused-animation');
+      mainInterval = window.setInterval(moveToNextSlide,timeLeftAfterRem);
+    }
+  });
+});
+
+
+
+
+function countIntervals() {
+  const decrementInterval = setInterval(() => {
+    remaining -= 100;
+    if (remaining <= 0) {
+      clearInterval(decrementInterval);
+      remaining = 5100; 
+      countIntervals(); 
+    }
+  }, 100); 
+}
+
+countIntervals(); 
