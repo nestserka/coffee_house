@@ -81,8 +81,8 @@ btnPrev.addEventListener('click', moveToPrevSlide);
 
 
 
-const radioButtons = document.querySelectorAll('.favourite-pagination input[type="radio"]');
-const labels = document.querySelectorAll('.favourite-pagination label');
+const radioButtons = document.querySelectorAll('.favourite-pagination__progress-bar');
+const labels = document.querySelectorAll('.favourite-pagination__display-progress');
 let timeLeft = 5100;
 let remaining = 5100;
 let timeLeftAfterRem;
@@ -90,9 +90,14 @@ let mainInterval = window.setInterval(moveToNextSlide, 5100);
 
 
 const updateRadioButtons = (index) => {
-  radioButtons[Math.abs(index)].checked = true;
-  radioButtons.forEach((rb) => {
-    rb.disabled = rb.checked;
+  radioButtons.forEach((radio, rIndex) => {
+    if (Math.abs(index) === rIndex) {
+      radio.classList.add('active');
+      labels[rIndex].style.display = 'block'; 
+    } else {
+      radio.classList.remove('active'); 
+      labels[rIndex].style.display = 'none'; 
+    }
   });
   window.clearInterval(mainInterval);
   mainInterval = window.setInterval(moveToNextSlide, 5100);
@@ -127,15 +132,15 @@ window.addEventListener("mouseup", (e) => {
 
 
 
-sliderItems.addEventListener('mouseover', () => {
-  radioButtons.forEach((radio, index) => {
-    if (radio.checked) {
-      labels[index].classList.add('paused-animation');
-      labelIndexl = index;
-    }
-  });
-  clearInterval(mainInterval); 
-});
+// sliderItems.addEventListener('mouseover', () => {
+//   radioButtons.forEach((radio, index) => {
+//     if (radio.classList.contains('active')) {
+//       labels[index].classList.add('paused-animation');
+//       labelIndexl = index;
+//     }
+//   });
+//   clearInterval(mainInterval); 
+// });
 
 
 sliderItems.addEventListener('mouseout', () => {
