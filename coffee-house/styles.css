@@ -259,20 +259,43 @@ h3, .slider-item__price{
     display: none;
 }
 
-.favourite-pagination label{
-    content: "";
+.favourite-pagination label {
+    position: relative;
+    display: inline-block;
     width: 40px;
     height: 4px;
     background-color: #C1B6AD;
     cursor: pointer;
-    margin:0;
-    padding:0;
-    transition: .4s ease-out;
+    margin: 0;
+    padding: 0;
 }
 
-
-.favourite-pagination input[type="radio"]:checked+label {
+.favourite-pagination label::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
     background-color: #665F55;
+}
+
+@keyframes updateColor {
+    0% {
+        width: 1;
+        background-color: #665F55;
+    }
+
+    100% {
+        width: 100%;
+        background-color: #665F55;
+    }
+}
+
+.favourite-pagination input[type="radio"]:checked+label::before {
+    animation-duration: 6s;
+    animation-name: updateColor;
+    animation-iteration-count: 1;
 }
 
 .about__paragraph{
@@ -850,4 +873,19 @@ footer{
         opacity: 1;
         transform: translateX(0%);
     }
+}
+
+/* slider */
+
+.slider-track__width{
+    overflow: hidden;
+    width:480px;
+    height:100%;
+    position: relative;
+}
+
+.slider-track{
+    display: flex;
+    transition: .5s;
+    gap: 0;
 }
