@@ -106,7 +106,7 @@ const updateRadioButtons = (index) => {
 
 
 updateRadioButtons(0);
-
+const isTouch = () => 'ontouchstart' in window || window.DocumentTouch && document instanceof window.DocumentTouch || navigator.maxTouchPoints > 0 || window.navigator.msMaxTouchPoints > 0;
 
 const cards = sliderItems;
 let isPressed = false;
@@ -114,18 +114,21 @@ let cursorX;
 let labelIndexl;
 
 
-
 slider.addEventListener("mousedown", (e) => {
+  if (isTouch()) return;
+  e.preventDefault();
   isPressed = true;
   cursorX = e.offsetX - cards.offsetLeft;
 });
 
 slider.addEventListener("mousemove", (e) => {
+  if (isTouch()) return;
   if (!isPressed) return;
   e.preventDefault();
 });
 
 window.addEventListener("mouseup", (e) => {
+  if (isTouch()) return;
   if(isPressed){
   if (cursorX > e.offsetX){
     moveToNextSlide();
@@ -138,6 +141,7 @@ window.addEventListener("mouseup", (e) => {
 
 
 sliderItems.addEventListener('mouseover', () => {
+  if (isTouch()) return;
   radioButtons.forEach((radio, index) => {
     if (radio.classList.contains('active')) {
       labels[index].classList.add('paused-animation');
@@ -150,6 +154,7 @@ sliderItems.addEventListener('mouseover', () => {
 
 
 sliderItems.addEventListener('mouseout', () => {
+  if (isTouch()) return;
   radioButtons.forEach((radio, index) => {
     if (radio.classList.contains('active')) {
       labels[index].classList.remove('paused-animation');
@@ -187,16 +192,21 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
+let touchScreenINdexvar;
 
 slider.addEventListener('touchstart', function (e) {
-  console.log("start")
   touchstartX = e.changedTouches[0].screenX;
+  labels[Math.abs(position)].classList.add('paused-animation');
+  touchScreenINdexvar = Math.abs(position);
+  clearTimeout(timeoutId);
+  clearInterval(mainInterval);
 }, false);
 
 
 slider.addEventListener('touchend', function (e) {
-  console.log("enf")
   touchendX = e.changedTouches[0].screenX;
+  labels[touchScreenINdexvar].classList.remove('paused-animation');
+  calculateWidth = getCurrentWidth(touchScreenINdexvar);
   handleGesture();
 });
 
@@ -206,6 +216,12 @@ function handleGesture() {
   } else if (touchendX > touchstartX) {
       moveToPrevSlide();
   }  else {
-    console.log("I AM HERE");
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+
+    timeoutId = setTimeout(() => {
+      moveToNextSlide();
+    }, calculateWidth);
 }
 }
