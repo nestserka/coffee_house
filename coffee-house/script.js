@@ -56,12 +56,10 @@ items.forEach(item => {
 let calculateWidth = 0;
 
 const moveToNextSlide = () => {
-  console.log("moveToNextSlide called");
   position -= slidesToScroll;
   if (position < -(itemsCount - slidesToShow)) {
       position = 0;
   }
-  console.log(position + "test");
   setPosition();
 };
 
@@ -139,7 +137,6 @@ window.addEventListener("mouseup", (e) => {
 });
 
 
-
 sliderItems.addEventListener('mouseover', () => {
   radioButtons.forEach((radio, index) => {
     if (radio.classList.contains('active')) {
@@ -150,8 +147,6 @@ sliderItems.addEventListener('mouseover', () => {
   clearTimeout(timeoutId);
   clearInterval(mainInterval);
 });
-
-
 
 
 sliderItems.addEventListener('mouseout', () => {
@@ -181,3 +176,13 @@ function getCurrentWidth(index) {
   return timeValue;
 }
 
+document.addEventListener('keydown', function(e) {
+  switch (e.key) {
+    case 'ArrowLeft':
+      moveToPrevSlide();
+      break;
+    case 'ArrowRight':
+      moveToNextSlide();
+      break;
+  }
+});
