@@ -186,3 +186,26 @@ document.addEventListener('keydown', function(e) {
       break;
   }
 });
+
+
+slider.addEventListener('touchstart', function (e) {
+  console.log("start")
+  touchstartX = e.changedTouches[0].screenX;
+}, false);
+
+
+slider.addEventListener('touchend', function (e) {
+  console.log("enf")
+  touchendX = e.changedTouches[0].screenX;
+  handleGesture();
+});
+
+function handleGesture() {
+  if (touchendX < touchstartX) {
+      moveToNextSlide();
+  } else if (touchendX > touchstartX) {
+      moveToPrevSlide();
+  }  else {
+    console.log("I AM HERE");
+}
+}
