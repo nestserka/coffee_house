@@ -53,13 +53,15 @@ sliderItems.style.width = `${totalItems * 100}%`;
 items.forEach(item => {
     item.style.width = `${slideWidth}%`;
 });
-
+let calculateWidth = 0;
 
 const moveToNextSlide = () => {
+  console.log("moveToNextSlide called");
   position -= slidesToScroll;
   if (position < -(itemsCount - slidesToShow)) {
       position = 0;
   }
+  console.log(position + "test");
   setPosition();
 };
 
@@ -83,25 +85,29 @@ btnPrev.addEventListener('click', moveToPrevSlide);
 
 const radioButtons = document.querySelectorAll('.favourite-pagination__progress-bar');
 const labels = document.querySelectorAll('.favourite-pagination__display-progress');
-let timeLeft = 5100;
-let remaining = 5100;
-let timeLeftAfterRem;
 let mainInterval = window.setInterval(moveToNextSlide, 5100);
+let timeoutId;
 
+function setNewInterval(){
+  clearInterval(mainInterval);
+  mainInterval = window.setInterval(moveToNextSlide, 5100);
+}
 
 const updateRadioButtons = (index) => {
   radioButtons.forEach((radio, rIndex) => {
     if (Math.abs(index) === rIndex) {
       radio.classList.add('active');
-      labels[rIndex].style.display = 'block'; 
+      labels[rIndex].style.display = 'block';
+      setNewInterval(); 
     } else {
       radio.classList.remove('active'); 
       labels[rIndex].style.display = 'none'; 
     }
   });
-  window.clearInterval(mainInterval);
-  mainInterval = window.setInterval(moveToNextSlide, 5100);
 };
+
+
+updateRadioButtons(0);
 
 
 const cards = sliderItems;
@@ -122,33 +128,56 @@ slider.addEventListener("mousemove", (e) => {
 });
 
 window.addEventListener("mouseup", (e) => {
+  if(isPressed){
   if (cursorX > e.offsetX){
     moveToNextSlide();
   } else if (cursorX < e.offsetX){
     moveToPrevSlide();
   }
   isPressed = false;
+}
 });
 
 
 
-// sliderItems.addEventListener('mouseover', () => {
-//   radioButtons.forEach((radio, index) => {
-//     if (radio.classList.contains('active')) {
-//       labels[index].classList.add('paused-animation');
-//       labelIndexl = index;
-//     }
-//   });
-//   clearInterval(mainInterval); 
-// });
+sliderItems.addEventListener('mouseover', () => {
+  radioButtons.forEach((radio, index) => {
+    if (radio.classList.contains('active')) {
+      labels[index].classList.add('paused-animation');
+      labelIndexl = index;
+    }
+  });
+  clearTimeout(timeoutId);
+  clearInterval(mainInterval);
+});
+
+
 
 
 sliderItems.addEventListener('mouseout', () => {
   radioButtons.forEach((radio, index) => {
-    if (radio.checked) {
-        labels[labelIndexl].classList.remove('paused-animation');
+    if (radio.classList.contains('active')) {
+      labels[index].classList.remove('paused-animation');
+      labels[labelIndexl].classList.remove('paused-animation');
+      calculateWidth = getCurrentWidth(index);
+
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+
+      timeoutId = setTimeout(() => {
+        moveToNextSlide();
+      }, calculateWidth);
     }
   });
 });
 
+function getCurrentWidth(index) {
+  const computedStyle = window.getComputedStyle(labels[index]);
+  const currentWidth = parseInt(computedStyle.getPropertyValue('width'));
+  const percentage = (currentWidth / 40) * 100; 
+  const percentageDecimal = parseFloat(percentage) / 100;
+  timeValue = parseInt(5100 - (5100 * percentageDecimal));
+  return timeValue;
+}
 

@@ -289,7 +289,7 @@ h3, .slider-item__price{
     background-color: #665F55;
     animation-duration: 6s;
     animation-name: updateColor;
-    animation-iteration-count: 1;
+    animation-iteration-count: 2;
 }
 
 @keyframes updateColor {
@@ -305,7 +305,7 @@ h3, .slider-item__price{
 }
 
 
-.paused-animation::before {
+.paused-animation {
     animation-play-state: paused; 
   }
 
