@@ -35,7 +35,7 @@ header, main{
     border-radius: 100px;
     border:1px solid rgba(193, 182, 173, 1);
     cursor:pointer;
-    transition: background-color 1000ms linear;
+    transition: background-color 200ms linear;
     overflow: hidden;
     display:flex;
     flex-direction:row;
@@ -132,6 +132,32 @@ header, main{
 
 .oncount{
     display:none;
+}
+
+.elementToFadeInAndOut {
+    animation: fadeOut 0.2s linear forwards;
+}
+
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
 }
 
 @media all and (max-width:768px) {

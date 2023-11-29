@@ -7,8 +7,8 @@ createMenu(data, 'coffee');
 window.addEventListener('resize', adjustScreenLength);
 
 function adjustScreenLength() {
+    const menuWrapperItemCount = document.querySelectorAll('.menu-item__card');
     if (window.innerWidth <= 768) {
-        const menuWrapperItemCount = document.querySelectorAll('.menu-item__card');
         if (menuWrapperItemCount.length > 4) {
             menuWrapperItemCount.forEach((item, index) => {
                 if (index >= 4) {
@@ -59,8 +59,14 @@ menuButtons.forEach(btn => {
                 otherBtn.classList.remove('menu-btn-checked');
             }
         });
+        const menuItems = document.querySelectorAll('.menu-item__card');
+        menuItems.forEach(element => {
+            element.classList.add("elementToFadeInAndOut");
+            setTimeout(function () {
+                checkType(btn.id);
+              }, 300);
+        })
         btn.classList.add('menu-btn-checked');
-        checkType(btn.id);
     });
 });
 
