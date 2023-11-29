@@ -84,7 +84,6 @@ header, main{
 }
 
 
-
 .menu-items__slider {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
@@ -162,9 +161,6 @@ header, main{
         margin-bottom:100px;
     }
 
-    .oncount{
-        display:block;
-    }
 }
 
 
@@ -178,12 +174,12 @@ header, main{
         background-color:rgba(102, 95, 85, 1);
         color:rgba(225, 212, 201, 1);
         border: 1px solid transparent;
-        transition: all 1s ease-out;
+        transition: all 0.3s ease-out;
     }
     
     .menu-btn:hover .menu-btn__cicle{
         background-color:rgba(225, 212, 201, 1);
-        transition: all 1s ease-out;
+        transition: all 0.3s ease-out;
     }
 
 }
