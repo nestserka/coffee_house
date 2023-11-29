@@ -1,6 +1,7 @@
 import data from '../assets/menu/products.json' assert { type: 'json' };
 const loadData = document.querySelector('.oncount');
 const menuButtons = document.querySelectorAll('.menu-btn');
+const modalWindow = document.getElementById('modal');
 const copyData = data;
 createMenu(data, 'coffee');
 
@@ -8,19 +9,16 @@ window.addEventListener('resize', adjustScreenLength);
 
 function adjustScreenLength() {
     const menuWrapperItemCount = document.querySelectorAll('.menu-item__card');
-    if (window.innerWidth <= 768) {
-        if (menuWrapperItemCount.length > 4) {
-            menuWrapperItemCount.forEach((item, index) => {
-                if (index >= 4) {
-                    item.style.display = 'none';
-                }
-            });
-           loadData.style.display = 'block'; 
-        } else {
-            loadData.style.display = 'none'; 
-        }
-    } else {
-        loadData.style.display = 'none'; 
+    if (menuWrapperItemCount.length > 4) {
+        menuWrapperItemCount.forEach((item, index) => {
+            if (index >= 4 &&  (window.innerWidth <= 768)) {
+                item.style.display = 'none';
+                loadData.style.display = 'block'; 
+            } else {
+                loadData.style.display = 'none'; 
+                item.style.display = 'block';
+            }
+        });
     }
 }
 
@@ -100,6 +98,7 @@ function openModel(item) {
     const rowHTML = generateRowHTML(result, itemImage);
     const modalWrapper = document.querySelector('.modal-wrapper');
     modalWrapper.insertAdjacentHTML('beforeend', rowHTML);
+    openModelWindow();
 }
 
 const menuItems = document.querySelectorAll('.menu-item__card');
@@ -116,11 +115,19 @@ function generateRowHTML(element, itemImage) {
             const sizeObj = element.sizes[key];
             const size = sizeObj.size;
             const addPrice = sizeObj['add-price'];
-            buttonsHTML += `
-                <div class="modal-wrapper__btn-set" id="${String(addPrice)}">
-                    <span class="menu-btn__cicle single-modal">${key}</span>
-                    <span>${size}</span>
-                </div>`;
+            if (key === 's') {
+                buttonsHTML += `
+                  <div class="menu-btn modal-wrapper__btn-set_item menu-btn-checked" id="${String(addPrice)}">
+                      <span class="menu-btn__cicle single-modal">${key}</span>
+                      <span class="single-modal description__ml">${size}</span>
+                  </div>`;
+              } else {
+                buttonsHTML += `
+                  <div class="menu-btn modal-wrapper__btn-set_item" id="${String(addPrice)}">
+                      <span class="menu-btn__cicle single-modal">${key}</span>
+                      <span class="single-modal description__ml">${size}</span>
+                  </div>`;
+              }
         }
     }
 
@@ -130,13 +137,13 @@ function generateRowHTML(element, itemImage) {
         const additiveName = additive.name;
         const additivePrice = additive['add-price'];
         additivesHTML += `
-            <div class="modal-wrapper__btn-set_item" id="${String(additivePrice)}">
+            <div class="menu-btn modal-wrapper__btn-set_item" id="${String(additivePrice)}">
                 <span class="menu-btn__cicle single-modal">${index+1}</span>
-                <span>${additiveName}</span>
+                <span class="single-modal smallcase">${additiveName}</span>
             </div>`;
     }
 
-    const image =  `<div class="menu-item__card_image-wrapper"> 
+    const image =  `<div class="modal-wrapper__card-img"> 
     <img src="${element.img}" alt="${String(element.category)}"></div> `;
 
     return `
@@ -144,14 +151,25 @@ function generateRowHTML(element, itemImage) {
     <div class="modal-wrapper__text">
         <h3>${element.name}</h3>
         <p class="coffee-description">${element.description}</p>
-        <p class="coffee-description">Size</p>
+        <p class="coffee-description size-additive">Size</p>
         <div class="modal-wrapper__btn-set">${buttonsHTML}</div>
-        <p class="coffee-description">Additives</p>
+        <p class="coffee-description size-additive">Additives</p>
         <div class="modal-wrapper__btn-set">${additivesHTML}</div>
         <div class="total-price">
-        <p class="coffee-description">Total</p>
+        <p class="slider-item__price">Total:</p>
         <p class="slider-item__price card-display">$${element.price}</p>   
         </div>
+        <hr>
+        <div class="static-block__ads">
+            <img class="info-empty" src="assets/icons/info-empty.svg" alt="info empty">
+            <p class="mobile-btn__wrapper_sub-title modal-window_description">The cost is not final. Download our mobile app to see the final price and place your order. Earn loyalty points and enjoy your favorite coffee with up to 20% discount.</p>
+        </div>
+        <button class="modal__close-btn link-btn">Close</button>
     </div>
 `;
+}
+
+
+function openModelWindow(){
+    modalWindow.classList.add('modal_visibility');
 }
