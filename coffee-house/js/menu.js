@@ -39,7 +39,7 @@ function createMenu(data, type){
         <div class="menu-item__card_description-wrapper">
         <h3>${element.name}</h3>
         <p class="coffee-description">${element.description}</p>
-        <p class="slider-item__price card-display">${element.price}</p>  
+        <p class="slider-item__price card-display">$${element.price}</p>  
         </div>
         </div>
         `;
@@ -47,9 +47,6 @@ function createMenu(data, type){
     menuSlider.insertAdjacentHTML('beforeend', rowsHTML);
     adjustScreenLength();
 }
-
-
-
 
 
 menuButtons.forEach(btn => {
@@ -93,3 +90,68 @@ loadData.addEventListener('click', () => {
         }
     loadData.style.display = 'none'; 
 });
+
+// modal
+
+function openModel(item) {
+    const itemName = item.getElementsByTagName("h3")[0].innerHTML;
+    const itemImage = item.querySelector('.menu-item__card_image-wrapper');
+    const result = copyData.find(element => element.name === itemName);
+    const rowHTML = generateRowHTML(result, itemImage);
+    const modalWrapper = document.querySelector('.modal-wrapper');
+    modalWrapper.insertAdjacentHTML('beforeend', rowHTML);
+}
+
+const menuItems = document.querySelectorAll('.menu-item__card');
+menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+        openModel(item);
+    });
+});
+
+function generateRowHTML(element, itemImage) {
+    let buttonsHTML = '';
+    for (const key in element.sizes) {
+        if (Object.hasOwnProperty.call(element.sizes, key)) {
+            const sizeObj = element.sizes[key];
+            const size = sizeObj.size;
+            const addPrice = sizeObj['add-price'];
+            buttonsHTML += `
+                <div class="modal-wrapper__btn-set" id="${String(addPrice)}">
+                    <span class="menu-btn__cicle single-modal">${key}</span>
+                    <span>${size}</span>
+                </div>`;
+        }
+    }
+
+    let additivesHTML = '';
+
+    for (const [index, additive] of element.additives.entries()) {
+        const additiveName = additive.name;
+        const additivePrice = additive['add-price'];
+        additivesHTML += `
+            <div class="modal-wrapper__btn-set_item" id="${String(additivePrice)}">
+                <span class="menu-btn__cicle single-modal">${index+1}</span>
+                <span>${additiveName}</span>
+            </div>`;
+    }
+
+    const image =  `<div class="menu-item__card_image-wrapper"> 
+    <img src="${element.img}" alt="${String(element.category)}"></div> `;
+
+    return `
+    ${image}
+    <div class="modal-wrapper__text">
+        <h3>${element.name}</h3>
+        <p class="coffee-description">${element.description}</p>
+        <p class="coffee-description">Size</p>
+        <div class="modal-wrapper__btn-set">${buttonsHTML}</div>
+        <p class="coffee-description">Additives</p>
+        <div class="modal-wrapper__btn-set">${additivesHTML}</div>
+        <div class="total-price">
+        <p class="coffee-description">Total</p>
+        <p class="slider-item__price card-display">$${element.price}</p>   
+        </div>
+    </div>
+`;
+}
