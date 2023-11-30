@@ -143,7 +143,7 @@ function generateRowHTML(element, itemImage) {
         const additiveName = additive.name;
         const additivePrice = additive['add-price'];
         additivesHTML += `
-            <div class="menu-btn modal-wrapper__btn-set_item" data-attribute="${String(additivePrice)}">
+            <div class="menu-btn modal-wrapper__btn-set_item btn-additive" data-attribute="${String(additivePrice)}">
                 <span class="menu-btn__cicle single-modal">${index+1}</span>
                 <span class="single-modal smallcase">${additiveName}</span>
             </div>`;
@@ -163,7 +163,7 @@ function generateRowHTML(element, itemImage) {
         <div class="modal-wrapper__btn-set">${additivesHTML}</div>
         <div class="total-price">
         <p class="slider-item__price">Total:</p>
-        <p class="slider-item__price card-display">$${element.price}</p>   
+        <p class="slider-item__price card-display" id="item-price">$${element.price}</p>   
         </div>
         <hr>
         <div class="static-block__ads">
@@ -249,16 +249,45 @@ modalWindow.addEventListener('click', function (event) {
         }
 });
 
-function setButtons(){
-   let btnSizes = document.querySelectorAll('.btn-size');
-   btnSizes.forEach(btn => {
-   btn.addEventListener('click', () => {
-    let size = btn.getAttribute('data-attribute');
-        console.log(size);
-        btnSizes.forEach(button => {
-            button.classList.remove('menu-btn-checked');
+function setButtons() {
+    let btnSizes = document.querySelectorAll('.btn-size');
+    let btnAdditives = document.querySelectorAll('.btn-additive');
+    let productPrice = document.getElementById('item-price');
+    const initialValue = productPrice.textContent.substring(1);
+    let price = parseFloat(initialValue);
+    btnSizes.forEach(btn => {
+        btn.addEventListener('click', () => {
+            let size = parseFloat(btn.getAttribute('data-attribute'));
+            if (btn.classList.contains('menu-btn-checked')){
+                console.log(size);
+            }
+            btnSizes.forEach(button => {
+                if (button !== btn && button.classList.contains('menu-btn-checked')) {
+                button.classList.remove('menu-btn-checked');
+                price -= parseFloat(button.getAttribute('data-attribute'));
+                }
+            });
+            btn.classList.add('menu-btn-checked');
+            price += size;
+            setTimeout(() => {
+                productPrice.innerHTML = '$' + price.toFixed(2);
+              }, 300);
         });
-        btn.classList.add('menu-btn-checked');
     });
-});
+
+
+    btnAdditives.forEach(btn => {
+        btn.addEventListener('click', () => {
+            let additive = parseFloat(btn.getAttribute('data-attribute'));
+            btn.classList.toggle('menu-btn-checked');
+            if (btn.classList.contains('menu-btn-checked')){
+                price += additive;
+            } else {
+                price -= additive;
+            }
+            productPrice.innerHTML = '$' + price.toFixed(2);
+        });
+    });
 }
+
+
