@@ -11,6 +11,7 @@ burger.addEventListener('click', function () {
       closeMenu();
     } else {
       nav.classList.add('open');
+      nav.classList.add('open-script');
     }
   });
 
@@ -27,11 +28,11 @@ function closeMenu() {
 navLinks.forEach(link => {
   link.addEventListener('click', () => {
     document.querySelector('.nav-list__wrapper').classList.remove('open');
-    document.querySelector('.burger').classList.remove('active');
     nav.classList.add('close');
-
+    document.querySelector('.burger').classList.remove('active');
     setTimeout(() => {
       nav.classList.remove('close');
+      nav.classList.remove('open-script');
     }, 300);
   });
 });
@@ -225,3 +226,6 @@ function handleGesture() {
     }, calculateWidth);
 }
 }
+document.getElementById('main-logo').addEventListener('click', function(event) {
+  event.preventDefault(); 
+});
