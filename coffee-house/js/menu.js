@@ -5,6 +5,8 @@ const modalWindow = document.getElementById('modal');
 const burger = document.querySelector('.burger');
 const nav = document.querySelector('.nav-list__wrapper');
 const navLinks = document.querySelectorAll('.menu__link');
+let closeBtn;
+let body = document.body;
 
 const copyData = data;
 createMenu(data, 'coffee');
@@ -105,7 +107,7 @@ function openModel(item) {
     openModelWindow();
 }
 
-const menuItems = document.querySelectorAll('.menu-item__card');
+let menuItems = document.querySelectorAll('.menu-item__card');
 menuItems.forEach(item => {
     item.addEventListener('click', () => {
         openModel(item);
@@ -121,13 +123,13 @@ function generateRowHTML(element, itemImage) {
             const addPrice = sizeObj['add-price'];
             if (key === 's') {
                 buttonsHTML += `
-                  <div class="menu-btn modal-wrapper__btn-set_item menu-btn-checked" id="${String(addPrice)}">
+                  <div class="menu-btn modal-wrapper__btn-set_item menu-btn-checked btn-size" data-attribute="${String(addPrice)}">
                       <span class="menu-btn__cicle single-modal">${key}</span>
                       <span class="single-modal description__ml">${size}</span>
                   </div>`;
               } else {
                 buttonsHTML += `
-                  <div class="menu-btn modal-wrapper__btn-set_item" id="${String(addPrice)}">
+                  <div class="menu-btn modal-wrapper__btn-set_item btn-size" data-attribute="${String(addPrice)}">
                       <span class="menu-btn__cicle single-modal">${key}</span>
                       <span class="single-modal description__ml">${size}</span>
                   </div>`;
@@ -141,7 +143,7 @@ function generateRowHTML(element, itemImage) {
         const additiveName = additive.name;
         const additivePrice = additive['add-price'];
         additivesHTML += `
-            <div class="menu-btn modal-wrapper__btn-set_item" id="${String(additivePrice)}">
+            <div class="menu-btn modal-wrapper__btn-set_item" data-attribute="${String(additivePrice)}">
                 <span class="menu-btn__cicle single-modal">${index+1}</span>
                 <span class="single-modal smallcase">${additiveName}</span>
             </div>`;
@@ -168,7 +170,7 @@ function generateRowHTML(element, itemImage) {
             <img class="info-empty" src="assets/icons/info-empty.svg" alt="info empty">
             <p class="mobile-btn__wrapper_sub-title modal-window_description">The cost is not final. Download our mobile app to see the final price and place your order. Earn loyalty points and enjoy your favorite coffee with up to 20% discount.</p>
         </div>
-        <button class="modal__close-btn link-btn">Close</button>
+        <button class="modal__close-btn link-btn" id="close_modal">Close</button>
     </div>
 `;
 }
@@ -176,11 +178,14 @@ function generateRowHTML(element, itemImage) {
 
 function openModelWindow(){
     modalWindow.classList.add('modal_visibility');
+    body.classList.add('scroll_block');
+    closeBtn = document.getElementById('close_modal');
+    closeBtn.addEventListener('click', closeModal);
+    setButtons();
 }
 
 document.getElementById('disable-default-menu').addEventListener('click', function(event) {
     event.preventDefault(); 
-    console.log("Anchor clicked! Custom action performed.");
 });
 
  // burger menu
@@ -216,3 +221,44 @@ navLinks.forEach(link => {
     }, 300);
   });
 });
+
+
+
+function closeModal(){
+    modalWindow.classList.add('modal_hide');
+
+    setTimeout(function () {
+    modalWindow.classList.remove('modal_visibility');
+    modal.classList.remove('modal_hide');
+    body.classList.remove('scroll_block');
+    document.querySelector('.modal-wrapper').innerHTML = '';
+  }, 800);
+
+}
+
+modalWindow.addEventListener('click', function (event) {
+    if (event.target === modal) {
+        modalWindow.classList.add('modal_hide');
+  
+        setTimeout(function () {
+            modalWindow.classList.remove('modal_visibility');
+            modal.classList.remove('modal_hide');
+            body.classList.remove('scroll_block');
+            document.querySelector('.modal-wrapper').innerHTML = '';
+          }, 300);
+        }
+});
+
+function setButtons(){
+   let btnSizes = document.querySelectorAll('.btn-size');
+   btnSizes.forEach(btn => {
+   btn.addEventListener('click', () => {
+    let size = btn.getAttribute('data-attribute');
+        console.log(size);
+        btnSizes.forEach(button => {
+            button.classList.remove('menu-btn-checked');
+        });
+        btn.classList.add('menu-btn-checked');
+    });
+});
+}

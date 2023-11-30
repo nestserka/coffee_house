@@ -385,3 +385,21 @@ header, main{
     margin-top:20px;
     margin-bottom:10px;
 }
+
+.modal_hide {
+    animation: modalHide .5s both;
+}
+
+@keyframes modalHide {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.scroll_block{
+    overflow-y: hidden;
+}
