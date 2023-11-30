@@ -25,6 +25,9 @@ header, main{
 
 .menu-disable{
     cursor: default;
+    pointer-events: none;;
+    -webkit-user-select: none;
+    user-select: none;
 }
 .header__menu_logo{
     cursor: pointer;
