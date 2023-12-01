@@ -27,6 +27,7 @@ function closeMenu() {
 
 navLinks.forEach(link => {
   link.addEventListener('click', () => {
+    if ( document.querySelector('.nav-list__wrapper').contains('open')) {
     document.querySelector('.nav-list__wrapper').classList.remove('open');
     nav.classList.add('close');
     document.querySelector('.burger').classList.remove('active');
@@ -34,6 +35,7 @@ navLinks.forEach(link => {
       nav.classList.remove('close');
       nav.classList.remove('open-script');
     }, 300);
+  }
   });
 });
 

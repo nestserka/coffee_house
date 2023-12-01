@@ -50,6 +50,7 @@ function createMenu(data, type){
         }).join('');
     menuSlider.insertAdjacentHTML('beforeend', rowsHTML);
     adjustScreenLength();
+    setModalBtn();
 }
 
 
@@ -65,7 +66,7 @@ menuButtons.forEach(btn => {
             element.classList.add("elementToFadeInAndOut");
             setTimeout(function () {
                 checkType(btn.id);
-              }, 300);
+              }, 200);
         })
         btn.classList.add('menu-btn-checked');
     });
@@ -107,12 +108,15 @@ function openModel(item) {
     openModelWindow();
 }
 
-let menuItems = document.querySelectorAll('.menu-item__card');
-menuItems.forEach(item => {
-    item.addEventListener('click', () => {
-        openModel(item);
+function setModalBtn(){
+    const menuItems = document.querySelectorAll('.menu-item__card');
+    menuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            openModel(item);
+        });
     });
-});
+}
+
 
 function generateRowHTML(element, itemImage) {
     let buttonsHTML = '';
@@ -211,26 +215,28 @@ function closeMenu() {
 }
 
 navLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    document.querySelector('.nav-list__wrapper').classList.remove('open');
-    nav.classList.add('close');
-    document.querySelector('.burger').classList.remove('active');
-    setTimeout(() => {
-      nav.classList.remove('close');
-      nav.classList.remove('open-script');
-    }, 300);
+    link.addEventListener('click', () => {
+      if ( document.querySelector('.nav-list__wrapper').contains('open')) {
+      document.querySelector('.nav-list__wrapper').classList.remove('open');
+      nav.classList.add('close');
+      document.querySelector('.burger').classList.remove('active');
+      setTimeout(() => {
+        nav.classList.remove('close');
+        nav.classList.remove('open-script');
+      }, 300);
+    }
+    });
   });
-});
 
 
 
 function closeModal(){
     modalWindow.classList.add('modal_hide');
+    body.classList.remove('scroll_block');
 
     setTimeout(function () {
     modalWindow.classList.remove('modal_visibility');
     modal.classList.remove('modal_hide');
-    body.classList.remove('scroll_block');
     document.querySelector('.modal-wrapper').innerHTML = '';
   }, 800);
 
