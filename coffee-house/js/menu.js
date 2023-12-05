@@ -201,6 +201,7 @@ document.getElementById('disable-default-menu').addEventListener('click', functi
     } else {
       nav.classList.add('open');
       nav.classList.add('open-script');
+      body.classList.add('scroll_block');
     }
   });
 
@@ -208,6 +209,7 @@ function closeMenu() {
     nav.classList.remove('open');
     burger.classList.remove('active');
     nav.classList.add('close');
+    body.classList.remove('scroll_block');
   
     setTimeout(() => {
       nav.classList.remove('close');
@@ -219,6 +221,7 @@ navLinks.forEach(link => {
       if ( document.querySelector('.nav-list__wrapper').contains('open')) {
       document.querySelector('.nav-list__wrapper').classList.remove('open');
       nav.classList.add('close');
+      body.classList.remove('scroll_block');
       document.querySelector('.burger').classList.remove('active');
       setTimeout(() => {
         nav.classList.remove('close');

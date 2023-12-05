@@ -399,7 +399,3 @@ header, main{
         opacity: 0;
     }
 }
-
-.scroll_block{
-    overflow-y: hidden;
-}

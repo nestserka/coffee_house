@@ -920,3 +920,7 @@ footer{
     transition: .5s;
     gap: 0;
 }
+
+.scroll_block{
+    overflow-y: hidden;
+}
