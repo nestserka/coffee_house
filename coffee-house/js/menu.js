@@ -218,7 +218,7 @@ function closeMenu() {
 
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-      if ( document.querySelector('.nav-list__wrapper').contains('open')) {
+      if ( document.querySelector('.nav-list__wrapper').classList.contains('open')) {
       document.querySelector('.nav-list__wrapper').classList.remove('open');
       nav.classList.add('close');
       body.classList.remove('scroll_block');
