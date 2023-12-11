@@ -92,6 +92,7 @@ header, main{
     gap:40px;
     margin-bottom: 100px;
     justify-items: center;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .menu-item__card{
@@ -277,6 +278,7 @@ header, main{
     border-radius:40px;
     padding:16px;
     background-color:#E1D4C9;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .modal-wrapper{

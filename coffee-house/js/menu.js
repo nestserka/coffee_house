@@ -15,6 +15,7 @@ window.addEventListener('resize', adjustScreenLength);
 
 function adjustScreenLength() {
     const menuWrapperItemCount = document.querySelectorAll('.menu-item__card');
+    console.log(menuWrapperItemCount.length);
     if (menuWrapperItemCount.length > 4) {
         menuWrapperItemCount.forEach((item, index) => {
             if (index >= 4 &&  (window.innerWidth <= 768)) {
@@ -25,6 +26,8 @@ function adjustScreenLength() {
                 item.style.display = 'block';
             }
         });
+    } else {
+        loadData.style.display = 'none'; 
     }
 }
 
@@ -268,7 +271,7 @@ function setButtons() {
         btn.addEventListener('click', () => {
             let size = parseFloat(btn.getAttribute('data-attribute'));
             if (btn.classList.contains('menu-btn-checked')){
-                console.log(size);
+                price -= size;
             }
             btnSizes.forEach(button => {
                 if (button !== btn && button.classList.contains('menu-btn-checked')) {
