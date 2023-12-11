@@ -109,20 +109,29 @@ section, .header{
 /* banner */
 
 .header__banner{
-    background-image: url('assets/images/img-header.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center; 
     height:644px;
-    border-radius: 40px;
     padding:100px;
+    position: relative;
 }
+
+#coffeeVidoe {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 40px;
+    pointer-events: none;
+  }
 
 .header-banner__block{
     display:flex;
     flex-direction: column;
     gap:40px;
     width:530px;
+    position:absolute;
+    z-index: 30;
 }
 
 .header-banner__block h1{
@@ -233,6 +242,12 @@ h3, .slider-item__price{
     display:flex;
     align-items:center;
     flex-direction:column;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .favourite-coffee{
@@ -247,6 +262,13 @@ h3, .slider-item__price{
     width:480px;
     height:480px;
     margin-bottom:20px;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    pointer-events: none
 }
 
 .favourite-pagination{
@@ -256,25 +278,46 @@ h3, .slider-item__price{
     gap:12px;
 }
 
-.favourite-pagination input[type="radio"] {
-    display: none;
-}
-
-.favourite-pagination label{
-    content: "";
+.favourite-pagination__progress-bar {
+    position: relative;
+    display: inline-block;
     width: 40px;
     height: 4px;
     background-color: #C1B6AD;
-    cursor: pointer;
-    margin:0;
-    padding:0;
-    transition: .4s ease-out;
+    margin: 0;
+    padding: 0;
 }
 
-
-.favourite-pagination input[type="radio"]:checked+label {
+.favourite-pagination__display-progress  {
+    display:none;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
     background-color: #665F55;
+    animation-duration: 6s;
+    animation-name: updateColor;
+    animation-iteration-count: 2;
 }
+
+@keyframes updateColor {
+    0% {
+        width: 1;
+        background-color: #665F55;
+    }
+
+    100% {
+        width: 100%;
+        background-color: #665F55;
+    }
+}
+
+
+.paused-animation {
+    animation-play-state: paused; 
+  }
 
 .about__paragraph{
    text-align: left;
@@ -488,13 +531,14 @@ footer{
     cursor: pointer;
     border-radius:50%;
     border:1px solid rgba(102, 95, 85, 1);
+    cursor:pointer;
 }
 
 .burger::after,
 .burger::before {
     content: '';
     position: absolute;
-    height: 1.5px;
+    height: 2px;
     width: 16px;
     background-color: rgba(64, 63, 61, 1);
     transition: all 0.3s ease 0s;
@@ -549,6 +593,29 @@ footer{
     .header__menu{
         display: grid;
         grid-template-columns: 0.7fr 1fr 1fr; 
+    }
+}
+
+
+@media (max-width:1280px){
+    .mobile-app{
+        flex-direction: column;
+        gap:100px;
+        height:auto;
+    }
+
+    .mobile-app__download{
+        padding:0;
+    }
+
+    .text-banners{
+        width:100%;
+        gap:40px;
+    }
+
+    .mobile-image{
+        align-self: center;
+        max-height:630px;
     }
 }
 
@@ -628,8 +695,8 @@ footer{
 
     }
 
-    .nav-list__wrapper.open .link-btn {
-        font-size: 2rem;
+    .nav-list__wrapper.open-script .link-btn {
+        font-size: 32px;
         line-height: 125%;
         text-align: center;
     }
@@ -640,7 +707,7 @@ footer{
         list-style:none;
         margin:0;
         gap:55px;
-        text-align: center;
+        align-items: center;
     }
 
     .menu__iteam__coffee_logo{
@@ -748,9 +815,9 @@ footer{
         gap:0;
     }
 
-    .header-banner__block h1, .header-banner__block h1 span{
-        font-size:2.625rem;
-        line-height: 3.019rem;
+    .header-banner__block h1,  .header-banner__block h1 span{
+        font-size:42px;
+        line-height: 48.3px;
     }
     
     .header__banner{
@@ -831,6 +898,18 @@ footer{
     }
 }
 
+@media (max-width:400px){
+    .favourite-coffee{
+        justify-content: center;
+        max-width:348px;
+    }
+
+    .slider-item__img{
+       width:100%;
+       height:100%;
+    }
+}
+
 /* burger */
 
 .close {
@@ -865,4 +944,23 @@ footer{
         opacity: 1;
         transform: translateX(0%);
     }
+}
+
+/* slider */
+
+.slider-track__width{
+    overflow: hidden;
+    width:480px;
+    height:100%;
+    position: relative;
+}
+
+.slider-track{
+    display: flex;
+    transition: .5s;
+    gap: 0;
+}
+
+.scroll_block{
+    overflow-y: hidden;
 }

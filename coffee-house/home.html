@@ -11,7 +11,7 @@
     <div class="page__inner">
         <header class="header">
             <div class="header__menu">
-                <a class="header__menu_logo" href="#">
+                <a class="header__menu_logo" id="main-logo" href="#">
                     <img  class="logo" src="assets/icons/logo.svg" alt="Logo">
                 </a>
             <div class="nav-list__wrapper">
@@ -34,14 +34,17 @@
             <div class="menu-bar">
                 <div class="menu__item">
                     <a class="menu__link link-btn menu__item__coffee" href="./menu.html">Menu
-                        <img class="menu__iteam__coffee_logo" src="assets/icons/coffee-cup.svg" alt="Coffee Cup">
-                    </a>
+                    <img class="menu__iteam__coffee_logo" src="assets/icons/coffee-cup.svg" alt="Coffee Cup">
+                </a>
             </div>
             </div>
         </div>
             <div class="burger"></div>
         </div>
         <div class="header__banner">
+            <video autoplay muted loop id="coffeeVidoe">
+                <source src="assets/video.mp4" type="video/mp4">
+              </video>
             <div class="header-banner__block">
                 <h1><span>Enjoy</span> premium coffee at our charming cafe</h1>
                 <p class="coffee-description header-block">With its inviting atmosphere and delicious coffee options, the Coffee House Resource is a popular destination for coffee lovers and those seeking a warm and inviting space to enjoy their favorite beverage.</p>
@@ -59,32 +62,45 @@
                 <div class="left-arrow">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M18.5 12H6M6 12L12 6M6 12L12 18" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg></div>	
+                    </svg></div>
+                <div class="slider-track__width">	
                 <div class="slider-track">
                 <div class="slider-container favorite-item1">
                 <img class="slider-item__img" src="assets/favoutite/coffee-slider-1.png" alt="fav 1">
                 <h3>S’mores Frappuccino</h3>
                 <p class="slider-item__description coffee-description">This new drink takes an espresso and mixes it with brown sugar and cinnamon before being topped with oat milk.</p>
                 <p class="slider-item__price">$5.50</p>
-                <!-- <img class="slider-item" src="assets/favoutite/coffee-slider-2.png" alt="fav 2">
-                <img class="slider-item" src="assets/favoutite/coffee-slider-3.png" alt="fav 3"> -->
               </div>
+              <div class="slider-container favorite-item2">
+                <img class="slider-item__img" src="assets/favoutite/coffee-slider-2.png" alt="fav 2">
+                <h3>Caramel Macchiato</h3>
+                <p class="slider-item__description coffee-description">Fragrant and unique classic espresso with rich caramel-peanut syrup, with cream under whipped thick foam.</p>
+                <p class="slider-item__price">$5.00</p>
             </div>
-            <div class="right-arrow">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 12H18.5M18.5 12L12.5 6M18.5 12L12.5 18" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>                    
-                </div>
+            <div class="slider-container favorite-item3">
+                <img class="slider-item__img" src="assets/favoutite/coffee-slider-3.png" alt="fav 3">
+                <h3>Ice coffee</h3>
+                <p class="slider-item__description coffee-description">A popular summer drink that tones and invigorates. Prepared from coffee, milk and ice.</p>
+                <p class="slider-item__price">$4.50</p>
+            </div>
+        </div>
+    </div>
+        <div class="right-arrow">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 12H18.5M18.5 12L12.5 6M18.5 12L12.5 18" stroke="#403F3D" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>                    
+            </div>
         </div>
         <div class="favourite-pagination">
-            <input type="radio" id="first" name="choice" value="first" checked>
-            <label for="first"></label>
-          
-            <input type="radio" id="second" name="choice" value="second">
-            <label for="second"></label>
-          
-            <input type="radio" id="third" name="choice" value="third">
-            <label for="third"></label>
+           <div class="favourite-pagination__progress-bar">
+            <span class="favourite-pagination__display-progress"></span>
+           </div>
+           <div class="favourite-pagination__progress-bar">
+            <span class="favourite-pagination__display-progress"></span>
+           </div>
+           <div class="favourite-pagination__progress-bar">
+            <span class="favourite-pagination__display-progress"></span>
+           </div>
           </div>
         </section>
          <section class="about" id="about">
@@ -205,5 +221,6 @@
            </section>
         </footer>
     </div>
+    <script src="js/script.js"></script>
 </body>
 </html>
