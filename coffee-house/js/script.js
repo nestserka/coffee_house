@@ -148,7 +148,6 @@ window.addEventListener("mouseup", (e) => {
 
 
 sliderItems.addEventListener('mouseover', () => {
-  if (isTouch()) return;
   radioButtons.forEach((radio, index) => {
     if (radio.classList.contains('active')) {
       labels[index].classList.add('paused-animation');
