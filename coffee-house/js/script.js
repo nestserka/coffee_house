@@ -122,20 +122,17 @@ let labelIndexl;
 
 
 slider.addEventListener("mousedown", (e) => {
-  if (isTouch()) return;
   e.preventDefault();
   isPressed = true;
   cursorX = e.offsetX - cards.offsetLeft;
 });
 
 slider.addEventListener("mousemove", (e) => {
-  if (isTouch()) return;
   if (!isPressed) return;
   e.preventDefault();
 });
 
 window.addEventListener("mouseup", (e) => {
-  if (isTouch()) return;
   if(isPressed){
   if (cursorX > e.offsetX){
     moveToNextSlide();
@@ -160,7 +157,6 @@ sliderItems.addEventListener('mouseover', () => {
 
 
 sliderItems.addEventListener('mouseout', () => {
-  if (isTouch()) return;
   radioButtons.forEach((radio, index) => {
     if (radio.classList.contains('active')) {
       labels[index].classList.remove('paused-animation');
