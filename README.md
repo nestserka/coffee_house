@@ -11,7 +11,6 @@ https://nestserka.github.io/coffee_house/coffee-house/home
 ## Table of Contents
 - Features
 - Tech Stack
-- Getting Started
 
 ## Features
 This project offers the following features:
