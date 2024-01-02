@@ -1,50 +1,5 @@
-const burger = document.querySelector('.burger');
-const nav = document.querySelector('.nav-list__wrapper');
-const navLinks = document.querySelectorAll('.menu__link');
-let body = document.body;
 
-
-// burger menu
-
-burger.addEventListener('click', function () {
-    this.classList.toggle('active');
-    if (nav.classList.contains('open')) {
-      closeMenu();
-    } else {
-      nav.classList.add('open');
-      body.classList.add('scroll_block');
-      nav.classList.add('open-script');
-    }
-  });
-
-function closeMenu() {
-    nav.classList.remove('open');
-    burger.classList.remove('active');
-    nav.classList.add('close');
-    body.classList.remove('scroll_block');
-  
-    setTimeout(() => {
-      nav.classList.remove('close');
-    }, 300);
-}
-
-navLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    if ( document.querySelector('.nav-list__wrapper').classList.contains('open')) {
-    document.querySelector('.nav-list__wrapper').classList.remove('open');
-    nav.classList.add('close');
-    body.classList.remove('scroll_block');
-    document.querySelector('.burger').classList.remove('active');
-    setTimeout(() => {
-      nav.classList.remove('close');
-      nav.classList.remove('open-script');
-    }, 300);
-  }
-  });
-});
-
-
-// carusel
+const initSlider = () => { 
 const btnPrev = document.querySelector('.left-arrow');
 const btnNext = document.querySelector('.right-arrow');
 const slider = document.querySelector('.slider-track__width');
@@ -113,7 +68,6 @@ const updateRadioButtons = (index) => {
 
 
 updateRadioButtons(0);
-const isTouch = () => 'ontouchstart' in window || window.DocumentTouch && document instanceof window.DocumentTouch || navigator.maxTouchPoints > 0 || window.navigator.msMaxTouchPoints > 0;
 
 const cards = sliderItems;
 let isPressed = false;
@@ -179,7 +133,7 @@ function getCurrentWidth(index) {
   const currentWidth = parseInt(computedStyle.getPropertyValue('width'));
   const percentage = (currentWidth / 40) * 100; 
   const percentageDecimal = parseFloat(percentage) / 100;
-  timeValue = parseInt(5100 - (5100 * percentageDecimal));
+  let timeValue = parseInt(5100 - (5100 * percentageDecimal));
   return timeValue;
 }
 
@@ -228,6 +182,6 @@ function handleGesture() {
     }, calculateWidth);
 }
 }
-document.getElementById('main-logo').addEventListener('click', function(event) {
-  event.preventDefault(); 
-});
+}
+
+export default initSlider;
